@@ -158,3 +158,17 @@ newstr3.map((item) => {
   }
 });
 console.log(longestword);
+
+function lastCharacter(str) {
+  return str.at(-1);
+}
+function lastCharacterarray(str) {
+  itslength = str.length;
+  return str[str.length - 1];
+}
+console.log(lastCharacterarray("df32"));
+
+
+
+let itsAString="itsagoodstring";
+console.log(itsAString.at(-1))
