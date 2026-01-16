@@ -128,3 +128,139 @@ const newarray12 = [3, 22, 232, 2];
 console.log(newarray12);
 clearArray(newarray12);
 console.log(newarray12);
+
+//Combined Problems:
+function cleanUsers(users) {
+  const result = [];
+  users
+    .map((u) => u.trim())
+    .filter((u) => u !== "")
+    .forEach((u) => {
+      if (!result.includes(u)) {
+        result.push(u);
+      }
+    });
+  return result.sort();
+}
+const users = ["  Ali ", "", "Sara", "ali", "Sara ", "  "];
+
+console.log(cleanUsers(users));
+
+//
+cart = ["Milk", "Bread"];
+action = { type: "ADD", item: "Eggs" };
+
+function updateCart(cart, action) {
+  if (action.type === "ADD") {
+    cart.push(action.item);
+  } else if (action.type === "REMOVE_LAST") {
+    cart.pop();
+  } else if (action.type === "CLEAR") {
+    cart.length = 0;
+  } else {
+    return "Invalid";
+  }
+}
+console.log(cart);
+updateCart(cart, { type: "ADD", item: "Biryani" });
+console.log(cart);
+updateCart(cart, { type: "REMOVE_LAST", item: "Biryani" });
+console.log(cart);
+updateCart(cart, { type: "CLEAR" });
+console.log(cart);
+
+//
+function analyzeScores(score) {
+  score = score.filter((i) => i >= 0);
+  let sum = score.reduce((s, ac) => ac + s);
+  let avg = sum / score.length - 1;
+  let highest = Math.max(...score);
+  const hasinv = score.some((s) => s > 100);
+  return { average: avg, max: highest, hasInvalid: hasinv };
+}
+console.log(analyzeScores([90, 70, -10, 100, 85]));
+//
+function formatMessage(msg) {
+  return msg
+    .trim()
+    .split(/\s+/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join("-");
+}
+console.log(formatMessage("   hello   world   from  js  "));
+
+//
+function inventorySystem(inv, soldItems) {
+  return inv.filter((item) => !soldItems.includes(item)).toSorted();
+}
+inventory = ["Pen", "Pencil", "Eraser", "Scale"];
+soldItems = ["Pencil", "Scale"];
+console.log(inventorySystem(inventory, soldItems));
+
+function processEmails(emails) {
+  const domains = [];
+
+  emails
+    .filter((e) => e.includes("@"))
+    .map((e) => e.split("@")[1])
+    .forEach((domain) => {
+      if (!domains.includes(domain)) {
+        domains.push(domain);
+      }
+    });
+
+  return domains;
+}
+console.log(
+  processEmails([
+    "user@gmail.com",
+    "admin@yahoo.com",
+    "test@gmail.com",
+    "invalidEmail",
+    "hello@yahoo.com",
+  ])
+);
+
+function transform(arr) {
+  return arr
+    .flat()
+    .filter((item) => Number(item))
+    .map((item) => item ** 2)
+    .reverse();
+}
+testarray102 = [1, "a", [2, 3], null, 4];
+console.log(transform(testarray102));
+
+[
+  "",
+  "User logged in",
+  "Error occurred",
+  "File uploaded",
+  "User logged out",
+  "Server restarted",
+  "",
+];
+("0: Error occurred | 1: File uploaded | 2: User logged out | 3: Server restarted");
+
+function analyzeLogs(logs) {
+  return [
+    ...logs
+      .filter((l) => l !== "")
+      .slice(-5)
+      .entries(),
+  ]
+    .map(([i, l]) => `${i}: ${l}`)
+    .join(" | ");
+}
+
+console.log(
+  analyzeLogs([
+    "",
+    "User logged in",
+    "Error occurred",
+    "File uploaded",
+    "User logged out",
+    "Server restarted",
+    "",
+  ])
+);
