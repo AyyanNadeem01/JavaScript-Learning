@@ -168,7 +168,15 @@ function lastCharacterarray(str) {
 }
 console.log(lastCharacterarray("df32"));
 
+let itsAString = "itsagoodstring";
+console.log(itsAString.at(-1));
 
+array5 = [12, 12, 3235, 3, 244, 5];
+text7 = "hellomyfrined";
+console.log(array5.at(1));
+console.log(text7[5]);
+let text9 = "Apple, Banana, Kiwi";
+console.log(text9.slice());
 
-let itsAString="itsagoodstring";
-console.log(itsAString.at(-1))
+let strwao = "Apple, Banana, Kiwi";
+console.log(strwao.substring(7, -10));
