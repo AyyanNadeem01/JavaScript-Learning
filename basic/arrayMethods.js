@@ -218,7 +218,7 @@ console.log(
     "test@gmail.com",
     "invalidEmail",
     "hello@yahoo.com",
-  ])
+  ]),
 );
 
 function transform(arr) {
@@ -262,5 +262,251 @@ console.log(
     "User logged out",
     "Server restarted",
     "",
-  ])
+  ]),
 );
+
+const students = [
+  { name: "Ali", marks: 78 },
+  { name: "Sara", marks: 92 },
+  { name: "Zara", marks: 85 },
+  { name: "John", marks: 92 },
+  { name: "Liam", marks: 88 },
+];
+function findTop3(students) {
+  return students
+    .sort((a, b) => b.marks - a.marks)
+    .slice(0, 3)
+    .map((item) => item.name);
+}
+
+console.log(findTop3(students));
+
+//
+const products = [
+  [101, 102],
+  [103, 101],
+  [104, 102, 105],
+];
+function simplify(products) {
+  final = [];
+  products
+    .flat()
+    .sort()
+    .map((item) => {
+      if (!final.includes(item)) {
+        final.push(item);
+      }
+    });
+  return final;
+}
+console.log(simplify(products));
+
+//
+function restockAlert(inventory) {
+  return inventory.filter((item) => item.qty < 5).map((item) => item.name);
+}
+const inventory1 = [
+  { name: "Apple", qty: 10 },
+  { name: "Orange", qty: 2 },
+  { name: "Mango", qty: 0 },
+  { name: "Banana", qty: 7 },
+];
+console.log(restockAlert(inventory1));
+
+const emails1 = [
+  "ali@gmail.com",
+  "sara@yahoo.com",
+  "zara@gmail.com",
+  "john@hotmail.com",
+  "emma@gmail.com",
+];
+
+function countDomains(emails) {
+  return emails.reduce((acc, email) => {
+    const domain = email.split("@")[1]?.split(".")[0];
+    if (domain) acc[domain] = (acc[domain] || 0) + 1;
+    return acc;
+  }, {});
+}
+
+console.log(countDomains(emails1));
+
+//
+const words = [
+  "apple",
+  "banana",
+  "apple",
+  "orange",
+  "banana",
+  "apple",
+  "kiwi",
+  "kiwi",
+];
+function topWords(words) {
+  const freq = words.reduce((acc, word) => {
+    acc[word] = (acc[word] || 0) + 1;
+    return acc;
+  }, {});
+  console.log(freq);
+  return Object.entries(freq)
+    .sort((a, b) => b[1] - a[1])
+    .map(([word]) => word)
+    .slice(0, 5);
+}
+console.log(topWords(words));
+
+function removeInvalid(data) {
+  return data.flat(Infinity).filter((item) => Number(item));
+}
+
+const data = [1, "a", [2, "b"], [3, [4, "c"]], 5];
+console.log(removeInvalid(data));
+
+const arr103 = [1, 2, 3, 4, 5];
+const k = 2;
+function rotateArray(arr, k) {
+  return arr.slice(-k).concat(arr.slice(0, arr.length - k));
+}
+console.log(rotateArray(arr103, k));
+//
+const array104 = [1, 2, 3, 4, 5];
+const array105 = [2, 4, 6];
+function arrayDifference(arr1, arr2) {
+  return arr1.filter((x) => !arr2.includes(x));
+}
+console.log(arrayDifference(array104, array105));
+
+function movingAverage(arr, windowSize) {
+  const result = [];
+  for (let i = 0; i <= arr.length - windowSize; i++) {
+    const sum = arr.slice(i, i + windowSize).reduce((a, b) => a + b, 0);
+    result.push(sum / windowSize);
+  }
+  return result;
+}
+
+const nums = [10, 20, 30, 40, 50];
+console.log(movingAverage(nums, 3));
+
+const logs = [
+  { user: "Ali", action: "login" },
+  { user: "Sara", action: "login" },
+  { user: "Ali", action: "logout" },
+  { user: "Ali", action: "login" },
+  { user: "Sara", action: "logout" },
+];
+
+const loginCounts = logs.reduce((acc, curr) => {
+  if (curr.action === "login") {
+    acc[curr.user] = (acc[curr.user] || 0) + 1;
+  }
+  return acc;
+}, {});
+
+const result = Object.fromEntries(
+  Object.entries(loginCounts).filter(([user, count]) => count >= 2),
+);
+
+console.log(result);
+
+const products10 = [
+  { name: "Laptop", price: "1200$" },
+  { name: "Phone", price: "800$" },
+  { name: "Tablet", price: "500$" },
+];
+function productNormalizer(product10) {
+  return product10
+    .map((item) => {
+      return { name: `${item.name}`, price: `${parseFloat(item.price)}` };
+    })
+    .map((item) => {
+      return { name: `${item.name}`, price: `${item.price * 0.9}` };
+    })
+    .sort((a, b) => a.price - b.price);
+}
+console.log(productNormalizer(products10));
+
+const data10 = [1, "a", [2, null, [3, undefined, [4, "b"]]], false, 5];
+function DeepDataCleaner(data) {
+  return data
+    .flat(Infinity)
+    .filter((item) => Number(item))
+    .sort();
+}
+console.log(DeepDataCleaner(data10));
+
+const messages = [
+  "Hi",
+  "",
+  "Hello there",
+  "How are you?",
+  "",
+  "I am fine",
+  "Bye",
+];
+function messageSummarizer(msg) {
+  return [
+    ...msg
+      .filter((item) => item !== "")
+      .slice(-3)
+      .entries(),
+  ]
+    .map(([index, item]) => `${index}: ${item}`)
+    .join("|");
+}
+console.log(messageSummarizer(messages));
+
+const orders = [
+  {
+    id: 1,
+    items: [
+      { price: 100, qty: 2 },
+      { price: 50, qty: 1 },
+    ],
+  },
+  { id: 2, items: [{ price: 200, qty: 1 }] },
+];
+function orderTotalCalculator(orders) {
+  return orders.map((order) => {
+    const total = order.items.reduce((acc, item) => {
+      return acc + item.price * item.qty;
+    }, 0);
+
+    return {
+      orderId: order.id,
+      total,
+    };
+  });
+}
+
+console.log(orderTotalCalculator(orders));
+
+const posts = [
+  { title: "JS Basics", tags: ["js", "programming"] },
+  { title: "Advanced JS", tags: ["js", "advanced"] },
+  { title: "Web Dev", tags: ["html", "css", "js"] },
+];
+
+function tagFrequencyEngine(post) {
+  return post
+    .flatMap((item) => item.tags)
+    .reduce((acc, i) => {
+      acc[i] = (acc[i] || 0) + 1;
+      return acc;
+    }, {});
+}
+console.log(tagFrequencyEngine(posts));
+
+
+const sessions = [
+  { user: "Ali", start: 10, end: 40 },
+  { user: "Sara", start: 5, end: 20 },
+  { user: "Ali", start: 50, end: 70 }
+];
+function sessionDurationCalculator(session){
+  return session.reduce((acc,i)=>{
+    acc[i.user]=(acc[i.user]||0)+(i.end-i.start)
+    return acc
+  },{})
+}
+console.log(sessionDurationCalculator(sessions))
